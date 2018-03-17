@@ -10,14 +10,19 @@
     "testRegex": "(/src/.*\\.spec.js)$"
   },
   "scripts": {
+    "lint": "./node_modules/.bin/eslint src",
     "jest": "cross-env NODE_ENV=commonjs ./node_modules/.bin/jest",
     "jest:watch": "npm run jest -- --watch"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
     "babel-preset-env": "^1.6.1",
     "cross-env": "^5.1.4",
+    "eslint": "^4.19.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
     "jest": "^22.4.2"
   }
 }
