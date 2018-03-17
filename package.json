@@ -3,14 +3,21 @@
   "version": "1.0.0",
   "description": "Opinionated NPM Package Scaffold",
   "main": "index.js",
-  "scripts": {},
   "keywords": [],
   "author": "jeantoledo",
   "license": "MIT",
+  "jest": {
+    "testRegex": "(/src/.*\\.spec.js)$"
+  },
+  "scripts": {
+    "jest": "cross-env NODE_ENV=commonjs ./node_modules/.bin/jest",
+    "jest:watch": "npm run jest -- --watch"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "cross-env": "^5.1.4"
+    "cross-env": "^5.1.4",
+    "jest": "^22.4.2"
   }
 }
