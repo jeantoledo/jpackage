@@ -1,0 +1,16 @@
+{
+  "name": "jpackage",
+  "version": "1.0.0",
+  "description": "Opinionated NPM Package Scaffold",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "jeantoledo",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.4"
+  }
+}
