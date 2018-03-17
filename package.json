@@ -2,17 +2,31 @@
   "name": "jpackage",
   "version": "1.0.0",
   "description": "Opinionated NPM Package Scaffold",
-  "main": "index.js",
   "keywords": [],
   "author": "jeantoledo",
   "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "cjs",
+    "es",
+    "umd"
+  ],
   "jest": {
     "testRegex": "(/src/.*\\.spec.js)$"
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint src",
     "jest": "cross-env NODE_ENV=commonjs ./node_modules/.bin/jest",
-    "jest:watch": "npm run jest -- --watch"
+    "jest:watch": "npm run jest -- --watch",
+    "clean": "rimraf cjs umd es",
+    "build": "npm run build:commonjs && npm run build:umd && npm run build:umd:min && npm run build:es",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir cjs",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:umd": "cross-env BABEL_ENV=es NODE_ENV=development rollup src/index.js --config --no-treeshake --file umd/jpackage.js",
+    "build:umd:min": "cross-env BABEL_ENV=es NODE_ENV=production rollup src/index.js --config --no-treeshake --file umd/jpackage.min.js",
+    "prepare": "npm run clean && npm test && npm run build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -23,6 +37,14 @@
     "eslint": "^4.19.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0",
-    "jest": "^22.4.2"
+    "jest": "^22.4.2",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.57.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^9.1.0",
+    "rollup-plugin-node-resolve": "^3.2.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-uglify": "^3.0.0",
+    "rollup-watch": "^4.3.1"
   }
 }
